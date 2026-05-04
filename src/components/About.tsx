@@ -53,9 +53,9 @@ export default function About() {
           {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-6">
             {[
-              { label: "Experience", value: "3+ Years" },
+              { label: "Experience", value: "5 months" },
               { label: "Projects", value: "20+" },
-              { label: "Clients", value: "10+" },
+              { label: "Clients", value: "0" },
               { label: "Coffee", value: "∞" },
             ].map((stat, i) => (
               <div key={i} className="space-y-1">

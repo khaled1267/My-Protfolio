@@ -4,50 +4,50 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import { ArrowRight, Sparkles, Code2, Globe, Cpu, Layout, Smartphone } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { useMagnetic } from "@/hooks/useMagnetic";
+import { FaReact, FaHtml5 } from "react-icons/fa";
+import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
+import { SiMongodb } from "react-icons/si";
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const iconsRef = useRef<HTMLDivElement>(null);
-  
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const imageRef = useRef(null);
+  const iconsRef = useRef(null);
+
   const magneticViewRef = useMagnetic();
   const magneticCollabRef = useMagnetic();
 
   useEffect(() => {
     const tl = gsap.timeline();
 
-    // Initial entry animations
     tl.from(titleRef.current, {
-      y: 100,
+      y: 50,
       opacity: 0,
       duration: 1,
       ease: "power4.out",
     })
-    .from(subtitleRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-    }, "-=0.6")
-    .from(imageRef.current, {
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      ease: "back.out(1.7)",
-    }, "-=0.8");
+      .from(subtitleRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+      }, "-=0.6")
+      .from(imageRef.current, {
+        scale: 0.8,
+        opacity: 0,
+        duration: 1,
+        ease: "back.out(1.7)",
+      }, "-=0.8");
 
-    // Floating Icons animation
+    // আইকন অ্যানিমেশন
     const icons = iconsRef.current?.children;
     if (icons) {
       Array.from(icons).forEach((icon, index) => {
         gsap.to(icon, {
-          y: "random(-18, 18)",
-          x: "random(-18, 18)",
-          duration: "random(3, 6)",
+          y: "random(-15, 15)",
+          x: "random(-10, 10)",
+          duration: `random(3, 5)`,
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
@@ -57,97 +57,119 @@ export default function Hero() {
     }
   }, []);
 
-  return (
-    <section ref={containerRef} className="min-h-screen flex items-center justify-center relative overflow-hidden bg-brand-dark px-6">
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-        
-        {/* Text Content */}
-        <div className="space-y-8">
-          <div className="space-y-2">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 text-blue-400 font-medium tracking-wider uppercase text-sm"
-            >
-              <Sparkles className="w-4 h-4" />
-              Available for new projects
-            </motion.div>
-            <h1 ref={titleRef} className="text-6xl md:text-8xl font-black leading-tight text-white">
-              Hi, I&apos;m <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">Khaled Mahmud</span>
-            </h1>
-          </div> 
+  // স্মুথ স্ক্রল ফাংশন (অপশনাল কিন্তু ভালো)
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-          <p ref={subtitleRef} className="text-gray-400 text-xl md:text-2xl max-w-xl leading-relaxed">
-            Specializing in building high-performance, visually stunning frontend interfaces that bring creative designs to life with seamless user experiences.
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-[#0B0F1A] px-4 sm:px-8 pt-24 pb-12 overflow-hidden">
+      
+      {/* Background Decorative Circles */}
+      <div className="absolute top-1/4 -left-20 w-64 h-64 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-red-600/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        {/* LEFT CONTENT */}
+        <div className="order-2 lg:order-1 space-y-6 sm:space-y-8 text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs md:text-sm font-medium tracking-widest uppercase"
+          >
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+            Available for Projects
+          </motion.div>
+
+          <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.1]">
+            Hi, I&apos;m <br />
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 text-transparent bg-clip-text">
+              Khaled Mahmud
+            </span>
+          </h1>
+
+          <p ref={subtitleRef} className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Crafting high-performance, visually stunning MERN stack applications 
+            with smooth animations and exceptional user experiences.
           </p>
 
-          <div className="flex flex-wrap gap-6 pt-4">
-            <div ref={magneticViewRef as any}>
-              <button className="relative group px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
-                <span className="relative z-10">View Projects</span>
+          {/* Buttons with Click Action */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start pt-4">
+            <div ref={magneticViewRef} className="w-full sm:w-auto">
+              <button 
+                onClick={() => scrollToSection('projects')}
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-bold hover:bg-gray-200 transition-all active:scale-95 shadow-lg shadow-white/5"
+              >
+                View Projects
               </button>
             </div>
-            <div ref={magneticCollabRef as any}>
-              <button className="px-8 py-4 rounded-full border border-white/10 text-white font-bold flex items-center gap-2 hover:bg-white/5 transition-all duration-300">
+
+            <div ref={magneticCollabRef} className="w-full sm:w-auto">
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/10 text-white font-bold flex justify-center items-center gap-2 hover:bg-white/5 transition-all active:scale-95"
+              >
                 Contact Me <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Visual Content */}
-        <div className="relative flex justify-center items-center">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full border border-blue-500/20 animate-[spin_15s_linear_infinite]" />
-            <div className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full border border-purple-500/10 animate-[spin_25s_linear_infinite_reverse]" />
-          </div>
-
-          <div ref={imageRef} className="relative z-10 w-[280px] h-[280px] md:w-[420px] md:h-[420px]">
-            <div className="absolute inset-[-20px] bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+        {/* RIGHT IMAGE SECTION */}
+        <div className="order-1 lg:order-2 relative flex justify-center items-center">
+          <div ref={imageRef} className="relative w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px]">
             
-            <div className="absolute inset-0 p-[2px] rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-red-500 animate-[spin_8s_linear_infinite]">
-              <div className="h-full w-full bg-brand-dark rounded-full" />
+            {/* Spinning Gradient Border */}
+            <div className="absolute inset-0 p-[2px] sm:p-[3px] rounded-full bg-gradient-to-tr from-blue-500 via-transparent to-red-500 animate-[spin_8s_linear_infinite]">
+              <div className="w-full h-full bg-[#0B0F1A] rounded-full" />
             </div>
 
-            <div className="absolute inset-[6px] rounded-full overflow-hidden border-4 border-white/5">
-              <Image 
-                src="/profile.png" 
-                alt="Sajid Yaqub" 
+            {/* Profile Image */}
+            <div className="absolute inset-[10px] sm:inset-[20px] rounded-full overflow-hidden border border-white/5 bg-[#111625] shadow-2xl">
+              <Image
+                src="/protfoliopro.png"
+                alt="Profile"
                 fill
-                sizes="(max-width: 768px) 280px, 420px"
-                className="object-cover"
+                className="object-cover scale-105"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 to-transparent" />
             </div>
 
-            {/* Floating Icons (Using Lucide-React) */}
-            <div ref={iconsRef} className="absolute inset-[-40px] pointer-events-none">
+            {/* FLOATING ICONS */}
+            <div ref={iconsRef} className="absolute inset-[-30px] sm:inset-[-50px] md:inset-[-60px] pointer-events-none">
               
-              {/* Icon 1: Code */}
-              <div className="absolute top-[10%] right-[0%] p-4 bg-slate-900/90 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl z-20">
-                <Code2 className="w-7 h-7 text-blue-400" />
+              <div className="absolute top-[5%] right-[5%] z-10">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                  <FaReact className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#61DAFB]" />
+                </div>
               </div>
 
-              {/* Icon 2: Globe */}
-              <div className="absolute top-[50%] -right-[15%] p-4 bg-slate-900/90 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl z-20">
-                <Globe className="w-7 h-7 text-purple-400" />
+              <div className="absolute top-[20%] -left-[5%] z-10">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                  <RiNextjsFill className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
+                </div>
               </div>
 
-              {/* Icon 3: Smartphone */}
-              <div className="absolute bottom-[10%] right-[5%] p-4 bg-slate-900/90 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl z-20">
-                <Smartphone className="w-7 h-7 text-green-400" />
+              <div className="absolute bottom-[25%] -left-[10%] z-10">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                  <RiTailwindCssFill className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#38BDF8]" />
+                </div>
               </div>
 
-              {/* Icon 4: Layout */}
-              <div className="absolute top-[40%] -left-[15%] p-4 bg-slate-900/90 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl z-20">
-                <Layout className="w-7 h-7 text-red-400" />
+              <div className="absolute -bottom-[5%] left-[30%] z-10">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                  <SiMongodb className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#47A248]" />
+                </div>
               </div>
 
-              {/* Icon 5: CPU */}
-              <div className="absolute top-[5%] left-[5%] p-4 bg-slate-900/90 border border-white/10 backdrop-blur-md rounded-2xl shadow-2xl z-20">
-                <Cpu className="w-7 h-7 text-yellow-400" />
+              <div className="absolute bottom-[10%] right-[10%] z-10">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+                  <FaHtml5 className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#E34F26]" />
+                </div>
               </div>
 
             </div>

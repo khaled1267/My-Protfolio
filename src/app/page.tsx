@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import LoadingScreen from "@/components/LoadingScreen";
 import Footer from "@/components/footer";
+import Qualification from "@/components/Qualification";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
+        <Qualification />
         <Projects />
         <Contact />
         <Footer /> 

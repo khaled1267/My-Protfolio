@@ -20,9 +20,9 @@ export default function Contact() {
 
             <div className="space-y-6 pt-8">
               {[
-                { icon: Mail, label: "Email", value: "hello@sajidyaqub.com" },
-                { icon: Phone, label: "Phone", value: "+1 (555) 000-0000" },
-                { icon: MessageSquare, label: "Discord", value: "sajid#1234" },
+                { icon: Mail, label: "Email", value: "khaledkhan1267@gmail.com" },
+                { icon: Phone, label: "Phone", value: "+880 01785724218" },
+                { icon: MessageSquare, label: "Linkdin", value: "khaled1267" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-6 group">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-all">
@@ -54,14 +54,14 @@ export default function Contact() {
                   <div className="space-y-3">
                     <label className="text-sm font-semibold text-white ml-1">Name</label>
                     <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-blue-500 to-red-500">
-                      <input type="text" placeholder="John Carter" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
+                      <input type="text" placeholder="Your Name" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
                     </div>
                   </div>
                   {/* Email Input */}
                   <div className="space-y-3">
                     <label className="text-sm font-semibold text-white ml-1">Email</label>
                     <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-blue-500 to-red-500">
-                      <input type="email" placeholder="example@email.com" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
+                      <input type="email" placeholder="Your Email" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
                     </div>
                   </div>
                 </div>
@@ -71,14 +71,14 @@ export default function Contact() {
                   <div className="space-y-3">
                     <label className="text-sm font-semibold text-white ml-1">Phone</label>
                     <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-blue-500 to-red-500">
-                      <input type="text" placeholder="(123) 456 - 789" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
+                      <input type="text" placeholder="01XXXXXXXXX" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
                     </div>
                   </div>
                   {/* Company Input */}
                   <div className="space-y-3">
                     <label className="text-sm font-semibold text-white ml-1">Company</label>
                     <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-blue-500 to-red-500">
-                      <input type="text" placeholder="Facebook" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
+                      <input type="text" placeholder="Your Company" className="w-full px-6 py-4 rounded-[15px] bg-[#0F172A] text-white focus:outline-none placeholder:text-gray-600" />
                     </div>
                   </div>
                 </div>

@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Sajid Yaqub | Premium Developer Portfolio",
+  title: "Khaled Mahmud | Premium Developer Portfolio",
   description: "A high-end animated developer portfolio of Sajid Yaqub, built with Next.js, GSAP, and Framer Motion.",
 };
 
