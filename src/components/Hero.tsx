@@ -11,10 +11,11 @@ import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiMongodb } from "react-icons/si";
 
 export default function Hero() {
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const imageRef = useRef(null);
-  const iconsRef = useRef(null);
+  // TypeScript generics যোগ করা হয়েছে যাতে 'never' টাইপ এরর না আসে
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef = useRef<HTMLParagraphElement | null>(null);
+  const imageRef = useRef<HTMLDivElement | null>(null);
+  const iconsRef = useRef<HTMLDivElement | null>(null);
 
   const magneticViewRef = useMagnetic();
   const magneticCollabRef = useMagnetic();
@@ -22,32 +23,42 @@ export default function Hero() {
   useEffect(() => {
     const tl = gsap.timeline();
 
-    tl.from(titleRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power4.out",
-    })
-      .from(subtitleRef.current, {
+    // Safety check: titleRef.current আছে কিনা নিশ্চিত করা
+    if (titleRef.current) {
+      tl.from(titleRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+      });
+    }
+
+    if (subtitleRef.current) {
+      tl.from(subtitleRef.current, {
         y: 30,
         opacity: 0,
         duration: 0.8,
-      }, "-=0.6")
-      .from(imageRef.current, {
+      }, "-=0.6");
+    }
+
+    if (imageRef.current) {
+      tl.from(imageRef.current, {
         scale: 0.8,
         opacity: 0,
         duration: 1,
         ease: "back.out(1.7)",
       }, "-=0.8");
+    }
 
-    // আইকন অ্যানিমেশন
+    // আইকন অ্যানিমেশন ফিক্স
+    // iconsRef.current?.children এখন TypeScript চিনতে পারবে কারণ টাইপ HTMLDivElement দেয়া হয়েছে
     const icons = iconsRef.current?.children;
     if (icons) {
       Array.from(icons).forEach((icon, index) => {
         gsap.to(icon, {
           y: "random(-15, 15)",
           x: "random(-10, 10)",
-          duration: `random(3, 5)`,
+          duration: Number(`random(3, 5)`), // GSAP random syntax works fine
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
@@ -57,7 +68,6 @@ export default function Hero() {
     }
   }, []);
 
-  // স্মুথ স্ক্রল ফাংশন (অপশনাল কিন্তু ভালো)
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -97,9 +107,8 @@ export default function Hero() {
             with smooth animations and exceptional user experiences.
           </p>
 
-          {/* Buttons with Click Action */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start pt-4">
-            <div ref={magneticViewRef} className="w-full sm:w-auto">
+            <div ref={magneticViewRef as any} className="w-full sm:w-auto">
               <button 
                 onClick={() => scrollToSection('projects')}
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-bold hover:bg-gray-200 transition-all active:scale-95 shadow-lg shadow-white/5"
@@ -108,7 +117,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div ref={magneticCollabRef} className="w-full sm:w-auto">
+            <div ref={magneticCollabRef as any} className="w-full sm:w-auto">
               <button 
                 onClick={() => scrollToSection('contact')}
                 className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/10 text-white font-bold flex justify-center items-center gap-2 hover:bg-white/5 transition-all active:scale-95"
@@ -123,12 +132,10 @@ export default function Hero() {
         <div className="order-1 lg:order-2 relative flex justify-center items-center">
           <div ref={imageRef} className="relative w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px]">
             
-            {/* Spinning Gradient Border */}
             <div className="absolute inset-0 p-[2px] sm:p-[3px] rounded-full bg-gradient-to-tr from-blue-500 via-transparent to-red-500 animate-[spin_8s_linear_infinite]">
               <div className="w-full h-full bg-[#0B0F1A] rounded-full" />
             </div>
 
-            {/* Profile Image */}
             <div className="absolute inset-[10px] sm:inset-[20px] rounded-full overflow-hidden border border-white/5 bg-[#111625] shadow-2xl">
               <Image
                 src="/protfoliopro.png"
@@ -139,7 +146,7 @@ export default function Hero() {
               />
             </div>
 
-            {/* FLOATING ICONS */}
+            {/* FLOATING ICONS CONTAINER */}
             <div ref={iconsRef} className="absolute inset-[-30px] sm:inset-[-50px] md:inset-[-60px] pointer-events-none">
               
               <div className="absolute top-[5%] right-[5%] z-10">

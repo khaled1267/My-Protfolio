@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Menu, X } from "lucide-react";
 import { useMagnetic } from "@/hooks/useMagnetic";
@@ -17,18 +17,28 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["Home", "About", "Skill", "Projects", "Contact"];
+  const navItems = ["Home", "About", "Services", "Projects", "Contact"];
 
-  // স্ক্রল হ্যান্ডলার ফাংশন
-  const handleNavClick = (e, item) => {
+  // স্ক্রল হ্যান্ডলার ফাংশন (সেকশন আইডি অনুযায়ী স্ক্রল করবে)
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, item: string) => {
     setActiveItem(item);
     setMenuOpen(false);
 
     if (item === "Home") {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
-      // URL থেকে হ্যাশ রিমুভ করে ক্লিন রাখার জন্য
       window.history.pushState("", "", "/");
+    } else {
+      e.preventDefault();
+      // আইটেমের নাম ছোট হাতের অক্ষরে কনভার্ট করে আইডি হিসেবে ব্যবহার করছি (উদা: skill)
+      const targetId = item.toLowerCase();
+      const element = document.getElementById(targetId);
+      
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        // URL-এ হ্যাশ আপডেট করা (ঐচ্ছিক)
+        window.history.pushState("", "", `#${targetId}`);
+      }
     }
   };
 
@@ -48,7 +58,6 @@ const Navbar = () => {
           className="text-xl md:text-2xl font-bold flex items-center gap-2 cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          
           <span className="text-gray-400">Frontend</span>
           <span className="text-red-500">Developer</span>
         </motion.div>
@@ -74,16 +83,22 @@ const Navbar = () => {
         {/* Right Side */}
         <div className="flex items-center gap-4">
           <motion.div
-            ref={magneticHireRef}
+            ref={magneticHireRef as any}
             className="hidden md:block"
           >
-            <button className="relative px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 overflow-hidden group">
+            <button 
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                contactSection?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="relative px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 overflow-hidden group"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-500 to-red-500 p-[1.5px] rounded-full">
                 <div className="h-full w-full bg-[#161B2D] rounded-full transition-colors group-hover:bg-transparent"></div>
               </div>
 
               <span className="relative z-10 flex items-center gap-2 text-white text-sm font-bold">
-                <Sparkles className="w-4 h-4 text-blue-400" />
+                <p className="w-4 h-4 text-blue-400"><Sparkles/></p>
                 Hire Me
               </span>
             </button>
@@ -112,6 +127,7 @@ const Navbar = () => {
               <a
                 key={item}
                 href={item === "Home" ? "#" : `#${item.toLowerCase()}`}
+                // @ts-ignore
                 onClick={(e) => handleNavClick(e, item)}
                 className={`block transition-colors ${
                   activeItem === item ? "text-blue-500" : "text-gray-300 hover:text-white"
@@ -121,7 +137,13 @@ const Navbar = () => {
               </a>
             ))}
 
-            <button className="w-full mt-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-600 via-purple-500 to-red-500 text-white font-bold flex justify-center items-center gap-2">
+            <button 
+              onClick={() => {
+                setMenuOpen(false);
+                document.getElementById('contact')?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="w-full mt-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-600 via-purple-500 to-red-500 text-white font-bold flex justify-center items-center gap-2"
+            >
               <Sparkles className="w-4 h-4" />
               Hire Me
             </button>
@@ -129,7 +151,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Bottom line */}
       <div className="h-[1px] w-full bg-gradient-to-r from-red-500/40 via-blue-500/40 to-blue-500/40 opacity-50" />
     </header>
   );
