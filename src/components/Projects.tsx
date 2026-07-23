@@ -16,24 +16,30 @@ const projects = [
     category: "Frontend",
     stack: "React, Next.js, HTML, Tailwind CSS, Framer Motion",
     tags: ["React", "Next.js", "Html", "Css"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+    image: "https://6a62565f2c9be6b62f96223b.imgix.net/sandbox/Screenshot%202026-07-24%20000028.png",
     liveLink: "https://qurbani-hat-iota.vercel.app/",
     githubLink: "https://github.com/khaled1267/QurbaniHat",
-    challenges: "মেইন চ্যালেঞ্জ ছিল এনিম্যাল ক্যাটাগরিগুলো ডাইনামিকালি ফিল্টার করা এবং ইমেজ অপ্টিমাইজেশন করা যাতে সাইট দ্রুত লোড হয়।",
-    futurePlans: "ভবিষ্যতে এতে একটি পেমেন্ট গেটওয়ে এবং সেলারদের জন্য রিয়েল-টাইম চ্যাটিং সিস্টেম যোগ করার পরিকল্পনা আছে।"
+    challenges:
+  "The main challenge was implementing dynamic animal category filtering and optimizing images to improve performance and reduce page load times.",
+
+futurePlans:
+  "Future plans include integrating a secure payment gateway and adding a real-time chat system for sellers and buyers to enhance communication and user experience."
   },
-  {
+  {   
     id: 2,
     title: "Pixzen (AI Image)",
     description: "An AI-powered image generation and management tool that helps users create and organize visual content efficiently.",
     category: "Pixzer Image",
     stack: "React, Next.js, HTML, Tailwind CSS, Framer Motion",
     tags: ["React", "Next.js", "Html", "Css"],
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800&auto=format&fit=crop",
+    image: "https://6a62565f2c9be6b62f96223b.imgix.net/sandbox/Screenshot%202026-07-23%20224434.png",
     liveLink: "https://pixgen-khaled-one.vercel.app/",
     githubLink: "https://github.com/khaled1267/pixgen-nextjs",
-    challenges: "AI API থেকে জেনারেট হওয়া বড় সাইজের ইমেজগুলো হ্যান্ডেল করা এবং ইউজার অথেন্টিকেশন সিকিউর করা ছিল বড় চ্যালেঞ্জ।",
-    futurePlans: "ইউজারদের জন্য কাস্টম এডিটিং টুলস এবং ইমেজ সোশ্যাল শেয়ারিং অপশন যুক্ত করার ইচ্ছা আছে।"
+    challenges:
+  "Handling large AI-generated images from the API and ensuring secure user authentication were the main challenges.",
+
+futurePlans:
+  "Future plans include adding custom image editing tools for users and integrating social sharing options for generated images."
   },
   {
     id: 3,
@@ -42,11 +48,14 @@ const projects = [
     category: "KinKeeper",
     stack: "React, Next.js, HTML, Tailwind CSS, Framer Motion",
     tags: ["React", "Next.js", "Html", "Css"],
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800&auto=format&fit=crop",
+    image: "https://6a62565f2c9be6b62f96223b.imgix.net/sandbox/Screenshot%202026-07-24%20000220.png",
     liveLink: "https://my-kinkeeper-project-nextjs.vercel.app/",
     githubLink: "https://github.com/khaled1267/A7-KinKeeper-next-js-project",
-    challenges: "GSAP এবং Framer Motion একসাথে ব্যবহার করার সময় পারফরম্যান্স ঠিক রাখা এবং স্ক্রল ট্রিগার এনিমেশন স্মুথ করা বেশ কঠিন ছিল।",
-    futurePlans: "সাইটে আরো ইন্টারেক্টিভ থ্রি-ডি (3D) মডেল এবং ডার্ক/লাইট মোড কাস্টমাইজেশন যোগ করা হবে।"
+    challenges:
+  "Maintaining performance while using GSAP and Framer Motion together, and ensuring smooth scroll-triggered animations, was quite challenging.",
+
+futurePlans:
+  "Future plans include adding more interactive 3D models and implementing customizable dark/light mode options."
   },
 ];
 

@@ -103,10 +103,9 @@ export default function Hero() {
           </h1>
 
           <p ref={subtitleRef} className="text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            Crafting high-performance, visually stunning MERN stack applications 
-            with smooth animations and exceptional user experiences.
+            Building high-performance Full Stack web applications with modern frontend technologies, powerful backend systems, secure APIs, and exceptional user experiences. 
           </p>
-
+ 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start pt-4">
             <div ref={magneticViewRef as any} className="w-full sm:w-auto">
               <button 

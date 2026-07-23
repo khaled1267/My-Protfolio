@@ -58,7 +58,7 @@ const Navbar = () => {
           className="text-xl md:text-2xl font-bold flex items-center gap-2 cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="text-gray-400">Frontend</span>
+          <span className="text-gray-400">Full Stack </span>
           <span className="text-red-500">Developer</span>
         </motion.div>
 

@@ -42,12 +42,13 @@ export default function About() {
         <div ref={textRef} className="space-y-8">
           <h2 className="text-3xl uppercase tracking-[0.3em] text-blue-500 font-bold">About Me</h2>
           
-          <p className="text-3xl md:text-5xl font-medium leading-tight text-white">
-            I am a passionate <span className="text-blue-400">Frontend Developer</span> with a focus on creating immersive digital experiences.
+          <p className="text-3xl md:text-3xl font-medium leading-tight text-white"> 
+           I am Khaled mahmud, an aspiring Full Stack Developer and Computer Science student. I enjoy building responsive web applications, learning new technologies, and continuously improving my development skills. Outside of programming, I like exploring tech content and staying updated with modern web trends.
+
           </p>
           
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl">
-            Specializing in building high-performance, visually stunning frontend interfaces that bring creative designs to life with seamless user experiences.
+           Specializing in building high-performance, scalable full-stack applications that combine stunning user interfaces, robust backend architectures, secure APIs, and seamless user experiences.
           </p>
           
           {/* Stats Section */}
@@ -67,16 +68,18 @@ export default function About() {
 
           {/* Resume Download Button */}
           <div className="pt-8">
-  <a 
-    href="/my-resume.pdf" 
-    download="Sajid_Yaqub_Resume.pdf" 
-    className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white transition-all duration-300 shadow-lg hover:shadow-blue-500/20 hover:scale-105 bg-gradient-to-r from-[#3b82f6] via-[#a855f7] to-[#ef4444]"
-  >
-    Download Resume
-    <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-  </a>
-</div>
-
+            <a
+              href="/my-resume.pdf"
+              download="Khaled_Mahmud_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white transition-all duration-300 shadow-lg hover:shadow-blue-500/20 hover:scale-105 bg-gradient-to-r from-[#3b82f6] via-[#a855f7] to-[#ef4444]"
+            >
+              Download Resume
+              <Download className="w-5 h-5 transition-transform group-hover:translate-y-1" />
+            </a>
+          </div>
+ 
         </div>
       </div>
     </section>

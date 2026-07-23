@@ -8,9 +8,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <FaFacebook />, href: "#" },
-    { icon: <FaLinkedin />, href: "#" },
-    { icon: <FaInstagramSquare />, href: "#" },
+    { icon: <FaFacebook />, href: "https://www.facebook.com/khan.mahamud.md.khaled" },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/khaledmahmud67/" },
+    
     { icon: <FaSquareGithub />, href: "https://github.com/khaled1267" },
   ];
 
@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
           
           <div className="text-2xl font-bold tracking-tight">
-            <span className="text-gray-400"> Frontend </span>
+            <span className="text-gray-400"> Full Stack  </span>
             <span className="text-red-500">Developer</span>
           </div>
 
