@@ -9,7 +9,8 @@ import {
   Database, 
   Terminal,
   Flame, // Firebase এর জন্য
-  Zap    // Next.js এর জন্য
+  Zap,    // Next.js এর জন্য
+  Server
 } from "lucide-react";
 
 const skills = [
@@ -20,20 +21,7 @@ const skills = [
     color: "text-white",
     glowColor: "group-hover:shadow-white/20"
   },
-  { 
-    name: "Firebase", 
-    icon: Flame, 
-    desc: "Implementing real-time databases, authentication, and cloud functions seamlessly.", 
-    color: "text-orange-500",
-    glowColor: "group-hover:shadow-orange-500/40"
-  },
-  { 
-    name: "Tailwind CSS", 
-    icon: Layers, 
-    desc: "Creating responsive, modern, and clean layouts quickly using utility-first styling.", 
-    color: "text-sky-400",
-    glowColor: "group-hover:shadow-sky-400/40"
-  },
+  
   { 
     name: "JavaScript", 
     icon: Code2, 
@@ -41,6 +29,13 @@ const skills = [
     color: "text-yellow-400",
     glowColor: "group-hover:shadow-yellow-400/40"
   },
+  {
+  name: "TypeScript",
+  icon: Code2,
+  desc: "Writing type-safe, maintainable, and scalable JavaScript applications with strong typing.",
+  color: "text-blue-400",
+  glowColor: "group-hover:shadow-blue-400/40"
+},
   { 
     name: "React", 
     icon: Cpu, 
@@ -55,6 +50,7 @@ const skills = [
     color: "text-green-500",
     glowColor: "group-hover:shadow-green-500/40"
   },
+  { name: "Express.js", icon: Server, desc: "Building fast, scalable, and secure backend APIs and web applications with Node.js.", color: "text-green-400", glowColor: "group-hover:shadow-green-400/40" },
   { 
     name: "MongoDB", 
     icon: Database, 
@@ -62,12 +58,34 @@ const skills = [
     color: "text-emerald-500",
     glowColor: "group-hover:shadow-emerald-500/40"
   },
+  {
+  name: "Prisma",
+  icon: Database,
+  desc: "Managing databases efficiently with a modern, type-safe ORM for Node.js and TypeScript.",
+  color: "text-indigo-400",
+  glowColor: "group-hover:shadow-indigo-400/40"
+},
+{
+  name: "PostgreSQL",
+  icon: Database,
+  desc: "Working with powerful relational databases to build reliable and scalable applications.",
+  color: "text-blue-500",
+  glowColor: "group-hover:shadow-blue-500/40"
+},
   { 
     name: "HTML", 
     icon: Globe, 
     desc: "Creating clean, well-structured page layouts with semantic markup for accessibility.", 
     color: "text-orange-600",
     glowColor: "group-hover:shadow-orange-600/40"
+  },
+  
+  { 
+    name: "Tailwind CSS", 
+    icon: Layers, 
+    desc: "Creating responsive, modern, and clean layouts quickly using utility-first styling.", 
+    color: "text-sky-400",
+    glowColor: "group-hover:shadow-sky-400/40"
   },
 ];
 
