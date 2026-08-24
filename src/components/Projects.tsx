@@ -10,36 +10,36 @@ import { FaGithub } from "react-icons/fa";
 // ১. প্রজেক্ট ডেটা (সব রিকয়ারমেন্ট সহ)
 const projects = [
   {
-    id: 1,
-    title: "Qorbani Animal Hat",
-    description: "A specialized e-commerce platform for buying and selling sacrificial animals with a focus on ease of use and secure listings.",
-    category: "Frontend",
-    stack: "React, Next.js, HTML, Tailwind CSS, Framer Motion",
-    tags: ["React", "Next.js", "Html", "Css"],
-    image: "https://6a62565f2c9be6b62f96223b.imgix.net/sandbox/Screenshot%202026-07-24%20000028.png",
-    liveLink: "https://qurbani-hat-iota.vercel.app/",
-    githubLink: "https://github.com/khaled1267/QurbaniHat",
+    id: 1, 
+    title: "LegalEase – Online Lawyer Hiring Platform",
+    description: "A full-stack platform that connects clients with lawyers for legal consultations and appointment booking. Built with Next.js, React, MongoDB, Better Auth, and Stripe, featuring secure authentication, lawyer discovery, appointment management, online payments, and a responsive user-friendly interface.",
+    category: "Full stack",
+    stack: "React.js Next.js JavaScript Node.js Express.js MongoDB  Tailwind CSS Git & GitHub REST API ",
+    tags: [ "Next.js ,Node.js Express.js MongoDB,"],
+    image: "/lagel.png", 
+    liveLink: "https://ligalease-lawyer-hiring.vercel.app/",
+    githubLink: "https://github.com/khaled1267/-LegalEase-Online-Lawyer-Hiring-Platform",
     challenges:
-  "The main challenge was implementing dynamic animal category filtering and optimizing images to improve performance and reduce page load times.",
+  "Implementing secure authentication, Stripe payment integration, appointment booking, database management, and creating a responsive user-friendly interface for both clients and lawyers.",
 
 futurePlans:
-  "Future plans include integrating a secure payment gateway and adding a real-time chat system for sellers and buyers to enhance communication and user experience."
+  "Add real-time chat, video consultations, lawyer verification, ratings and reviews, email notifications, advanced search and filtering, and a comprehensive admin dashboard."
   },
   {   
     id: 2,
-    title: "Pixzen (AI Image)",
-    description: "An AI-powered image generation and management tool that helps users create and organize visual content efficiently.",
-    category: "Pixzer Image",
-    stack: "React, Next.js, HTML, Tailwind CSS, Framer Motion",
-    tags: ["React", "Next.js", "Html", "Css"],
-    image: "https://6a62565f2c9be6b62f96223b.imgix.net/sandbox/Screenshot%202026-07-23%20224434.png",
-    liveLink: "https://pixgen-khaled-one.vercel.app/",
+    title: "GadgetAI – AI Smart Gadget Marketplace",
+    description: "An AI-powered smart gadget marketplace featuring personalized recommendations, AI chat assistance, advanced search and filtering, authentication, gadget management, and analytics. Built with Next.js, TypeScript, Node.js, MongoDB, and Gemini AI.",
+    category: "GadgetAI",
+    stack: "React.js, Next.js, TypeScript, Node.js, MongoDB, Tailwind CSS, HTML, CSS, Gemini AI",
+    tags: [ "Next.js", "Typescript", "Node.js", "MongoDB", "Gemini AI"  ],
+    image: "/gaget.png",
+    liveLink: "https://gadget-ai-frontend.vercel.app/",
     githubLink: "https://github.com/khaled1267/pixgen-nextjs",
     challenges:
-  "Handling large AI-generated images from the API and ensuring secure user authentication were the main challenges.",
+  "Integrating Gemini AI for smart gadget recommendations and chat assistance, implementing secure authentication, managing product data, building advanced search and filtering, and creating a responsive and user-friendly marketplace interface.",
 
-futurePlans:
-  "Future plans include adding custom image editing tools for users and integrating social sharing options for generated images."
+futurePlans: 
+  "Add more advanced AI recommendations, voice-based AI assistance, product comparison, wishlist functionality, real-time notifications, improved analytics, and personalized shopping experiences."
   },
   {
     id: 3,

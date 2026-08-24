@@ -181,12 +181,12 @@ export default function Contact() {
             <p className="text-xl text-gray-400 max-w-md">
               Have a project in mind? Let&apos;s discuss how we can bring your ideas to life.
             </p>
-
+{/* icons */}
             <div className="space-y-6 pt-8">
               {[
                 { icon: Mail, label: "Email", value: "khaledmahmud8520@gmail.com" },
                 { icon: Phone, label: "Phone", value: "+8801785724218" },
-                { icon: MessageSquare, label: "LinkedIn", value: "Khaled Mahmud" },
+                { icon: MessageSquare, label: "LinkedIn", value: "khaledmahmud67" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-6 group">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-all">

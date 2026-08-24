@@ -21,51 +21,86 @@ export default function Hero() {
   const magneticCollabRef = useMagnetic();
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    // GSAP Context ensures proper cleanup of all animations (including looping/async ones) on unmount
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-    // Safety check: titleRef.current আছে কিনা নিশ্চিত করা
-    if (titleRef.current) {
-      tl.from(titleRef.current, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out",
-      });
-    }
-
-    if (subtitleRef.current) {
-      tl.from(subtitleRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-      }, "-=0.6");
-    }
-
-    if (imageRef.current) {
-      tl.from(imageRef.current, {
-        scale: 0.8,
-        opacity: 0,
-        duration: 1,
-        ease: "back.out(1.7)",
-      }, "-=0.8");
-    }
-
-    // আইকন অ্যানিমেশন ফিক্স
-    // iconsRef.current?.children এখন TypeScript চিনতে পারবে কারণ টাইপ HTMLDivElement দেয়া হয়েছে
-    const icons = iconsRef.current?.children;
-    if (icons) {
-      Array.from(icons).forEach((icon, index) => {
-        gsap.to(icon, {
-          y: "random(-15, 15)",
-          x: "random(-10, 10)",
-          duration: Number(`random(3, 5)`), // GSAP random syntax works fine
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          delay: index * 0.2,
+      // Safety check: titleRef.current আছে কিনা নিশ্চিত করা
+      if (titleRef.current) {
+        tl.from(titleRef.current, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power4.out",
         });
-      });
-    }
+      }
+
+      if (subtitleRef.current) {
+        tl.from(subtitleRef.current, {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+        }, "-=0.6");
+      }
+
+      if (imageRef.current) {
+        tl.from(imageRef.current, {
+          scale: 0.8,
+          opacity: 0,
+          duration: 1,
+          ease: "back.out(1.7)",
+        }, "-=0.8");
+      }
+
+      // Staggered entry animation for the floating icons, then trigger continuous organic floating motion
+      const icons = iconsRef.current?.children;
+      if (icons && icons.length > 0) {
+        tl.from(Array.from(icons), {
+          scale: 0,
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "back.out(1.5)",
+          onComplete: () => {
+            // Setup smooth, non-synchronized floating animations for each icon
+            Array.from(icons).forEach((icon, index) => {
+              // Y-axis float (vertical wave)
+              gsap.to(icon, {
+                y: "random(-15, 15)",
+                duration: gsap.utils.random(3.5, 5.5),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: index * 0.15,
+              });
+
+              // X-axis float (horizontal wave)
+              gsap.to(icon, {
+                x: "random(-10, 10)",
+                duration: gsap.utils.random(3.0, 5.0),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: index * 0.1,
+              });
+
+              // Subtle rotation float (rotational drift)
+              gsap.to(icon, {
+                rotation: "random(-8, 8)",
+                duration: gsap.utils.random(4.0, 6.0),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: index * 0.2,
+              });
+            });
+          }
+        }, "-=0.6");
+      }
+    });
+
+    return () => ctx.revert();
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -136,8 +171,8 @@ export default function Hero() {
             </div>
 
             <div className="absolute inset-[10px] sm:inset-[20px] rounded-full overflow-hidden border border-white/5 bg-[#111625] shadow-2xl">
-              <Image
-                src="/protfoliopro.png"
+              <Image 
+                src="/my-img.jpeg"
                 alt="Profile"
                 fill
                 className="object-cover scale-105"
@@ -148,32 +183,37 @@ export default function Hero() {
             {/* FLOATING ICONS CONTAINER */}
             <div ref={iconsRef} className="absolute inset-[-30px] sm:inset-[-50px] md:inset-[-60px] pointer-events-none">
               
-              <div className="absolute top-[5%] right-[5%] z-10">
-                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+              {/* React Icon */}
+              <div className="absolute top-[5%] right-[5%] z-10 pointer-events-auto">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl transition-all duration-300 hover:scale-110 hover:border-[#61DAFB]/40 hover:shadow-[0_0_25px_rgba(97,218,251,0.25)] cursor-pointer">
                   <FaReact className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#61DAFB]" />
                 </div>
               </div>
 
-              <div className="absolute top-[20%] -left-[5%] z-10">
-                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+              {/* Next.js Icon */}
+              <div className="absolute top-[20%] -left-[5%] z-10 pointer-events-auto">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl transition-all duration-300 hover:scale-110 hover:border-white/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] cursor-pointer">
                   <RiNextjsFill className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-white" />
                 </div>
               </div>
 
-              <div className="absolute bottom-[25%] -left-[10%] z-10">
-                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+              {/* Tailwind CSS Icon */}
+              <div className="absolute bottom-[25%] -left-[10%] z-10 pointer-events-auto">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl transition-all duration-300 hover:scale-110 hover:border-[#38BDF8]/40 hover:shadow-[0_0_25px_rgba(56,189,248,0.25)] cursor-pointer">
                   <RiTailwindCssFill className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#38BDF8]" />
                 </div>
               </div>
 
-              <div className="absolute -bottom-[5%] left-[30%] z-10">
-                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+              {/* MongoDB Icon */}
+              <div className="absolute -bottom-[5%] left-[30%] z-10 pointer-events-auto">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl transition-all duration-300 hover:scale-110 hover:border-[#47A248]/40 hover:shadow-[0_0_25px_rgba(71,162,72,0.25)] cursor-pointer">
                   <SiMongodb className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#47A248]" />
                 </div>
               </div>
 
-              <div className="absolute bottom-[10%] right-[10%] z-10">
-                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl">
+              {/* HTML5 Icon */}
+              <div className="absolute bottom-[10%] right-[10%] z-10 pointer-events-auto">
+                <div className="p-2 sm:p-4 bg-[#111625]/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/5 shadow-xl transition-all duration-300 hover:scale-110 hover:border-[#E34F26]/40 hover:shadow-[0_0_25px_rgba(227,79,38,0.25)] cursor-pointer">
                   <FaHtml5 className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#E34F26]" />
                 </div>
               </div>
